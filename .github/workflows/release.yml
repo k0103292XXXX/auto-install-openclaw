@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: windows-latest
@@ -18,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -31,14 +34,12 @@ jobs:
       - name: Install npm dependencies
         run: npm install
       
-      - name: Install Tauri CLI
-        run: npm install -g @tauri-apps/cli@^2
-      
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tauriScript: npx tauri
           tagName: ${{ github.ref_name }}
           releaseName: 'auto-install-openclaw ${{ github.ref_name }}'
           releaseBody: 'Download the .exe installer below to install OpenClaw with one click.'
