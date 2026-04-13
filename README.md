@@ -47,7 +47,7 @@ OpenClaw is a powerful open-source AI assistant platform, but installing it requ
 ### Setup
 
 ```bash
-git clone https://github.com/k01032922222-design/auto-install-openclaw.git
+git clone https://github.com/k0103292xxxx/auto-install-openclaw.git
 cd auto-install-openclaw
 npm install
 cargo tauri dev
